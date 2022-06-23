@@ -1,0 +1,40 @@
+{
+  "name": "rollup-plugin-img2",
+  "version": "1.0.0",
+  "description": "import image files with rollup",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "author": "lisen6 <1789502923@qq.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "files": [
+    "src",
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "eslint": "eslint src",
+    "prepublish": "npm run eslint && npm run build"
+  },
+  "keywords": [
+    "rollup",
+    "rollup-plugin",
+    "image"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "hasha": "^5.2.2",
+    "mini-svg-data-uri": "^1.4.4",
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "^4.2.1"
+  }
+}
