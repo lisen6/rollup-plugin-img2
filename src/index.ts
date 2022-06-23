@@ -7,10 +7,31 @@ import {
   mkdirSync
 } from 'fs'
 import { extname, relative, basename, sep } from 'path'
-import { createFilter } from '@rollup/pluginutils'
+import { createFilter, FilterPattern } from '@rollup/pluginutils'
+import { Plugin } from 'rollup'
 import svgToMiniDataURI from 'mini-svg-data-uri'
 import hasha from 'hasha'
-import { RollupImageOptions, GetDataURIProps, MineTypeProps } from '../types'
+
+export interface RollupImageOptions {
+  output?: string
+  include?: FilterPattern
+  exclude?: FilterPattern
+  dom?: boolean
+  hash?: boolean
+  limit?: number
+  _slash?: boolean
+}
+
+export interface GetDataURIProps {
+  format: string
+  isSvg: boolean
+  mime: string
+  source: string
+}
+
+export interface MineTypeProps {
+  [x: string]: string
+}
 
 const defaults = {
   output: '',
@@ -44,7 +65,7 @@ const constTemplate = ({ dataUri }: { dataUri: string }) => `
 const getDataUri = ({ format, isSvg, mime, source }: GetDataURIProps) =>
   isSvg ? svgToMiniDataURI(source) : `data:${mime};${format},${source}`
 
-export default function image(opts = {}) {
+export default function image(opts: RollupImageOptions = {}): Plugin {
   const options: RollupImageOptions = Object.assign({}, defaults, opts)
   const filter = createFilter(options.include, options.exclude)
 
