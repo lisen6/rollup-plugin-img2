@@ -33,11 +33,11 @@ export interface MineTypeProps {
   [x: string]: string
 }
 
-const defaults = {
+const defaults: RollupImageOptions = {
   output: '',
   dom: false,
   hash: false,
-  __slash: false,
+  _slash: false,
   exclude: null,
   include: null
 }
