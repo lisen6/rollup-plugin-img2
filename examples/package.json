@@ -4,14 +4,19 @@
   "description": "",
   "main": "rollup.config.js",
   "scripts": {
-    "clean": "rm -r ./dist",
-    "build": "rollup -c -w"
+    "clean": "rm -rf dist",
+    "build": "pnpm run clean && rollup -c"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-html": "^0.2.4",
-    "rollup": "^2.75.7"
+    "@rollup/plugin-image": "^2.1.1",
+    "rollup": "^2.75.7",
+    "rollup-plugin-typescript2": "^0.32.1"
+  },
+  "dependencies": {
+    "rollup-plugin-img2": "^1.0.0"
   }
 }
