@@ -10,14 +10,18 @@ import { extname, relative, basename, sep } from 'path'
 import { createFilter } from '@rollup/pluginutils'
 import svgToMiniDataURI from 'mini-svg-data-uri'
 import hasha from 'hasha'
+import { RollupImageOptions, GetDataURIProps, MineTypeProps } from '../types'
 
 const defaults = {
+  output: '',
   dom: false,
+  hash: false,
+  __slash: false,
   exclude: null,
   include: null
 }
 
-const mimeTypes = {
+const mimeTypes: MineTypeProps = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.png': 'image/png',
@@ -26,31 +30,31 @@ const mimeTypes = {
   '.webp': 'image/webp'
 }
 
-const domTemplate = ({ dataUri }) => `
+const domTemplate = ({ dataUri }: { dataUri: string }) => `
     var img = new Image();
     img.src = "${dataUri}";
     export default img;
   `
 
-const constTemplate = ({ dataUri }) => `
+const constTemplate = ({ dataUri }: { dataUri: string }) => `
     var img = "${dataUri}";
     export default img;
   `
 
-const getDataUri = ({ format, isSvg, mime, source }) =>
+const getDataUri = ({ format, isSvg, mime, source }: GetDataURIProps) =>
   isSvg ? svgToMiniDataURI(source) : `data:${mime};${format},${source}`
 
 export default function image(opts = {}) {
-  const options = Object.assign({}, defaults, opts)
+  const options: RollupImageOptions = Object.assign({}, defaults, opts)
   const filter = createFilter(options.include, options.exclude)
 
   return {
     name: 'image',
 
-    load(id) {
+    load(this: any, id: string) {
       if (!options.output) {
         this.warn(
-          `plugin-image: please configure the resource output directory `
+          'plugin-image: please configure the resource output directory '
         )
         return null
       }

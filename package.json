@@ -4,6 +4,8 @@
   "description": "import image files with rollup",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
+  "repository": "https://github.com/lisen6/rollup-plugin-img2.git",
+  "homepage": "https://github.com/lisen6/rollup-plugin-img2",
   "author": "lisen6 <1789502923@qq.com>",
   "license": "MIT",
   "engines": {
@@ -14,9 +16,10 @@
     "dist",
     "README.md"
   ],
+  "types": "./types/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "eslint": "eslint src",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx --fix src ",
     "prepublish": "npm run eslint && npm run build"
   },
   "keywords": [
