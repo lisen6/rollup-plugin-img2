@@ -8,7 +8,7 @@ This plugin requires an [LTS](https://github.com/nodejs/Release) Node version (v
 
 ## Install
 
-    yarn add --dev rollup-plugin-img2
+    yarn add -D rollup-plugin-img2
 
 or
 
@@ -26,8 +26,8 @@ In the rollup.config.js:
 import image from 'rollup-plugin-img2';
 
 export default {
-  entry: 'src/index.js',
-  dest: 'dist/bundle.js',
+  input: 'src/index.js',
+  output: 'dist/bundle.js',
   plugins: [
     image({
       output: 'dist/images'

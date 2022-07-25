@@ -11,8 +11,7 @@ export default {
     image({
       output: 'dist/images',
       hash: true,
-      limit: 1024 * 10,
-      _slash: true
+      limit: 1024 * 10
     }),
     html()
   ]
