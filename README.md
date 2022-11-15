@@ -2,10 +2,6 @@
 
 Import image files with rollup. Let you import images just like what you do with webpack in your React code!
 
-## Requirements
-
-This plugin requires an [LTS](https://github.com/nodejs/Release) Node version (v8.0.0+) and Rollup v1.20.0+.
-
 ## Install
 
     yarn add -D rollup-plugin-img2
@@ -30,7 +26,8 @@ export default {
   output: 'dist/bundle.js',
   plugins: [
     image({
-      output: 'dist/images'
+      output: 'dist/images',
+      hash: true,
       limit: 10000
     })
   ]
@@ -58,19 +55,6 @@ You can pass an option to the `image()` just like above, and there are some opti
 - limit: Optional. the limit(byte) of the file size. A file will be transformed into base64 string when it doesn't exceeded the limit, otherwise, it will be copyed to the dest path.
 - hash: Optional. a boolean value to indicate wheather to generate a hash string in file name(default false).
 - dom: Optional. Do not return a URL of the data protocol. Returns rendered image elements
-
-demo:
-
-```JavaScript
-  ...
-  image({
-    output: `${distPath}/images`, // default the root
-    limit: 8192,  // default 8192(8k)
-    hash: true,
-    exclude: 'node_modules/**'
-  })
-  ...
-```
 
 ## License
 
