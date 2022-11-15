@@ -2,9 +2,9 @@ import html from '@rollup/plugin-html'
 import image from 'rollup-plugin-img2'
 
 export default {
-  input: 'src/index.js',
+  input: './src/index.js',
   output: {
-    file: 'dist/bundle-[hash].js',
+    file: 'dist/bundle.js',
     format: 'iife'
   },
   plugins: [
